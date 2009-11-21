@@ -1,0 +1,1936 @@
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (3.0ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateProducts (20091121133823)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TABLE "products" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "category_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091121133823')[0m
+Migrating to CreateCategories (20091121133933)
+  [4;36;1mSQL (0.5ms)[0m   [0;1mCREATE TABLE "categories" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "parent_id" integer, "lft" integer, "rgt" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091121133933')[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mPRAGMA index_list("categories")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mPRAGMA index_list("products")[0m
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 14:46:16) [GET]
+  [4;36;1mSQL (0.6ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.3ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+
+NameError (undefined local variable or method `acts_as_nested_set' for #<Class:0x1035aa8a8>):
+  app/models/category.rb:2
+  app/controllers/categories_controller.rb:5:in `index'
+
+Rendered rescues/_trace (40.9ms)
+Rendered rescues/_request_and_response (1.1ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 14:46:38) [GET]
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 91ms (View: 48, DB: 0) | 200 OK [http://0.0.0.0/categories/]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 14:46:40) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+Completed in 19ms (View: 13, DB: 0) | 200 OK [http://0.0.0.0/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 14:46:47) [POST]
+  Parameters: {"category"=>{"name"=>"cane", "lft"=>"", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.4ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('cane', '2009-11-21 13:46:47', '2009-11-21 13:46:47', 1, NULL, 2)[0m
+Redirected to http://0.0.0.0:3000/categories/1
+Completed in 16ms (DB: 1) | 302 Found [http://0.0.0.0/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 14:46:47) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 1) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 88ms (View: 7, DB: 0) | 200 OK [http://0.0.0.0/categories/1]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 14:46:49) [GET]
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 15ms (View: 8, DB: 1) | 200 OK [http://0.0.0.0/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 14:46:50) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 2) ORDER BY "lft"[0m
+Completed in 17ms (View: 8, DB: 1) | 200 OK [http://0.0.0.0/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 14:46:57) [POST]
+  Parameters: {"category"=>{"name"=>"sdsdf", "lft"=>"", "parent_id"=>"1", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.4ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('sdsdf', '2009-11-21 13:46:57', '2009-11-21 13:46:57', 3, 1, 4)[0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 1) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 2) [0m
+  [4;36;1mCategory Update (0.1ms)[0m   [0;1mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 2 AND 2 THEN "lft" + 4 - 2 WHEN "lft" BETWEEN 3 AND 4 THEN "lft" + 2 - 3 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 2 AND 2 THEN "rgt" + 4 - 2 WHEN "rgt" BETWEEN 3 AND 4 THEN "rgt" + 2 - 3 ELSE "rgt" END, "parent_id" = CASE WHEN id = 2 THEN 1 ELSE "parent_id" END [0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 1) [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 2) [0m
+Redirected to http://0.0.0.0:3000/categories/2
+Completed in 24ms (DB: 1) | 302 Found [http://0.0.0.0/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 14:46:57) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 2) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 13ms (View: 5, DB: 0) | 200 OK [http://0.0.0.0/categories/2]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 14:47:00) [GET]
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 16ms (View: 10, DB: 1) | 200 OK [http://0.0.0.0/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 14:47:06) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 4) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 3)) [0m
+Completed in 17ms (View: 9, DB: 1) | 200 OK [http://0.0.0.0/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 14:47:17) [POST]
+  Parameters: {"category"=>{"name"=>"gatto", "lft"=>"dsfs", "parent_id"=>"2", "rgt"=>"sdf"}, "commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.3ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('gatto', '2009-11-21 13:47:17', '2009-11-21 13:47:17', 5, 2, 6)[0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 2) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 3) [0m
+  [4;36;1mCategory Update (0.1ms)[0m   [0;1mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 3 AND 4 THEN "lft" + 6 - 4 WHEN "lft" BETWEEN 5 AND 6 THEN "lft" + 3 - 5 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 3 AND 4 THEN "rgt" + 6 - 4 WHEN "rgt" BETWEEN 5 AND 6 THEN "rgt" + 3 - 5 ELSE "rgt" END, "parent_id" = CASE WHEN id = 3 THEN 2 ELSE "parent_id" END [0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 2) [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 3) [0m
+Redirected to http://0.0.0.0:3000/categories/3
+Completed in 20ms (DB: 1) | 302 Found [http://0.0.0.0/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 14:47:17) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 3) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 11ms (View: 4, DB: 0) | 200 OK [http://0.0.0.0/categories/3]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 14:47:19) [GET]
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 23ms (View: 14, DB: 1) | 200 OK [http://0.0.0.0/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 14:47:21) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Completed in 20ms (View: 10, DB: 1) | 200 OK [http://0.0.0.0/categories/new]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 14:49:38) [GET]
+  [4;35;1mProduct Load (102.8ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 126ms (View: 16, DB: 103) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 14:49:40) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Completed in 27ms (View: 21, DB: 1) | 200 OK [http://0.0.0.0/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2009-11-21 14:49:50) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q=", "product"=>{"name"=>"test", "category_id"=>""}}
+  [4;36;1mProduct Create (0.4ms)[0m   [0;1mINSERT INTO "products" ("name", "created_at", "updated_at", "category_id") VALUES('test', '2009-11-21 13:49:50', '2009-11-21 13:49:50', NULL)[0m
+Redirected to http://0.0.0.0:3000/products/1
+Completed in 14ms (DB: 0) | 302 Found [http://0.0.0.0/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 14:49:50) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 12ms (View: 7, DB: 0) | 200 OK [http://0.0.0.0/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 14:49:51) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 13ms (View: 6, DB: 0) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 14:49:54) [GET]
+  Parameters: {"id"=>"1"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+
+ActionView::TemplateError (undefined method `move_possible?' for #<Product:0x10326ab70>) on line #6 of app/views/products/edit.html.erb:
+3: <% form_for(@product) do |f| %>
+4:   <%= f.error_messages %>
+5:   <p>
+6:     <%= f.select :category_id, nested_set_options(Category, @product) {|i| "#{'-' * i.level} #{i.name}" } %>
+7:   </p>
+8:   <p>
+9:     <%= f.label :name %><br />
+
+    app/views/products/edit.html.erb:6
+    app/views/products/edit.html.erb:3
+
+Rendered rescues/_trace (48.4ms)
+Rendered rescues/_request_and_response (1.2ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 14:50:00) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Completed in 26ms (View: 17, DB: 1) | 200 OK [http://0.0.0.0/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2009-11-21 14:50:07) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q=", "product"=>{"name"=>"sdsdg", "category_id"=>"sgf"}}
+  [4;36;1mProduct Create (0.4ms)[0m   [0;1mINSERT INTO "products" ("name", "created_at", "updated_at", "category_id") VALUES('sdsdg', '2009-11-21 13:50:07', '2009-11-21 13:50:07', 0)[0m
+Redirected to http://0.0.0.0:3000/products/2
+Completed in 87ms (DB: 0) | 302 Found [http://0.0.0.0/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 14:50:07) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/products/2]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 14:50:08) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 16ms (View: 11, DB: 1) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 14:50:13) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+
+ActionView::TemplateError (undefined method `move_possible?' for #<Product:0x103438f10>) on line #6 of app/views/products/edit.html.erb:
+3: <% form_for(@product) do |f| %>
+4:   <%= f.error_messages %>
+5:   <p>
+6:     <%= f.select :category_id, nested_set_options(Category, @product) {|i| "#{'-' * i.level} #{i.name}" } %>
+7:   </p>
+8:   <p>
+9:     <%= f.label :name %><br />
+
+    app/views/products/edit.html.erb:6
+    app/views/products/edit.html.erb:3
+
+Rendered rescues/_trace (131.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 14:54:23) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (19.7ms)
+Completed in 37ms (View: 29, DB: 2) | 200 OK [http://0.0.0.0/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 14:54:41) [GET]
+Rendering template within layouts/products
+Rendering products/new
+
+ActionView::TemplateError (wrong number of arguments (1 for 2)) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.select :category_id %>
+5:   </p>
+6:   <p>
+7:     <%= f.label :name %><br />
+
+    app/views/products/_form.html.erb:4:in `select'
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/new.html.erb:3
+    app/controllers/products_controller.rb:29:in `new'
+
+Rendered rescues/_trace (125.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 14:54:54) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendered products/_form (13.5ms)
+Completed in 33ms (View: 18, DB: 1) | 200 OK [http://0.0.0.0/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 15:04:45) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" ORDER BY name[0m
+Rendered products/_form (14.5ms)
+Completed in 25ms (View: 20, DB: 1) | 200 OK [http://0.0.0.0/products/new]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 15:09:05) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+
+ActionView::TemplateError (undefined method `name' for [" cane", 1]:Array) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.collection_select :category_id, nested_set_options(Category, @product.category_id) {|i| "#{'-' * i.level} #{i.name}" }, :id, :name, :include_blank => true %>
+5:   </p>
+6:   <p>
+7:     <%= f.label :name %><br />
+
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/new.html.erb:3
+    app/controllers/products_controller.rb:29:in `new'
+
+Rendered rescues/_trace (55.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 15:09:53) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+
+ActionView::TemplateError (wrong number of arguments (3 for 4)) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.collection_select :category_id, nested_set_options(Category, @product.category_id) {|i| "#{'-' * i.level} #{i.name}" }, :include_blank => true %>
+5:   </p>
+6:   <p>
+7:     <%= f.label :name %><br />
+
+    app/views/products/_form.html.erb:4:in `collection_select'
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/new.html.erb:3
+    app/controllers/products_controller.rb:29:in `new'
+
+Rendered rescues/_trace (51.6ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 15:10:50) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (2.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (2.6ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (28.9ms)
+Completed in 130ms (View: 120, DB: 5) | 200 OK [http://0.0.0.0/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2009-11-21 15:10:58) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q=", "product"=>{"name"=>"sadasfas", "category_id"=>""}}
+  [4;36;1mProduct Create (1.4ms)[0m   [0;1mINSERT INTO "products" ("name", "created_at", "updated_at", "category_id") VALUES('sadasfas', '2009-11-21 14:10:58', '2009-11-21 14:10:58', NULL)[0m
+Redirected to http://0.0.0.0:3000/products/3
+Completed in 19ms (DB: 1) | 302 Found [http://0.0.0.0/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 15:10:58) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 9ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:10:59) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 17ms (View: 13, DB: 1) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 15:11:02) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (1.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (91.7ms)
+Completed in 102ms (View: 94, DB: 3) | 200 OK [http://0.0.0.0/products/3/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:11:06) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 18ms (View: 13, DB: 1) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 15:11:08) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+
+ActionView::TemplateError (undefined method `new_record?' for 0:Fixnum) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.select :category_id, nested_set_options(Category, @product.category_id) {|i| "#{'-' * i.level} #{i.name}" } %>
+5:     
+6:   </p>
+7:   <p>
+
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/edit.html.erb:3
+
+Rendered rescues/_trace (123.3ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#destroy (for 127.0.0.1 at 2009-11-21 15:11:13) [DELETE]
+  Parameters: {"authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q=", "id"=>"2"}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 2) [0m
+  [4;35;1mProduct Destroy (0.4ms)[0m   [0mDELETE FROM "products" WHERE "id" = 2[0m
+Redirected to http://0.0.0.0:3000/products
+Completed in 13ms (DB: 1) | 302 Found [http://0.0.0.0/products/2]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:11:13) [GET]
+  [4;36;1mProduct Load (1.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 17ms (View: 10, DB: 1) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#destroy (for 127.0.0.1 at 2009-11-21 15:11:15) [DELETE]
+  Parameters: {"authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q=", "id"=>"1"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 1) [0m
+  [4;36;1mProduct Destroy (0.3ms)[0m   [0;1mDELETE FROM "products" WHERE "id" = 1[0m
+Redirected to http://0.0.0.0:3000/products
+Completed in 15ms (DB: 1) | 302 Found [http://0.0.0.0/products/1]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:11:15) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 13ms (View: 9, DB: 1) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 15:11:17) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (16.6ms)
+Completed in 24ms (View: 18, DB: 1) | 200 OK [http://0.0.0.0/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 15:11:20) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"mGkrv2Byt6dExab0GkAzY3LnRqflsXiAAP/toCYxw1Q=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>""}}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Redirected to http://0.0.0.0:3000/products/3
+Completed in 7ms (DB: 0) | 302 Found [http://0.0.0.0/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 15:11:21) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://0.0.0.0/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:11:22) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://0.0.0.0/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 15:11:24) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (18.7ms)
+Completed in 26ms (View: 19, DB: 1) | 200 OK [http://0.0.0.0/products/3/edit]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:15:25) [GET]
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+
+ActionView::TemplateError (Missing template categories/_categories_tree.erb in view path app/views) on line #13 of app/views/categories/index.html.erb:
+10:       </tr>
+11:     </thead>
+12:     <tbody id="catlist">
+13:       <%= render :partial => 'categories_tree' -%>
+14:     </tbody>
+15:   </table>
+16: <%- end -%>
+
+    app/views/categories/index.html.erb:13
+    app/controllers/categories_controller.rb:7:in `index'
+
+Rendered rescues/_trace (112.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:15:37) [GET]
+  [4;36;1mCategory Load (0.8ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+
+ActionView::TemplateError (Missing template categories/_category_row.erb in view path app/views) on line #2 of app/views/categories/_categories_tree.html.erb:
+1: <%- @categories.each do |category| -%>
+2:   <%= render :partial => 'category_row', :locals => {:category => category} -%>
+3: <%- end -%>
+
+    app/views/categories/_categories_tree.html.erb:2
+    app/views/categories/_categories_tree.html.erb:1:in `each'
+    app/views/categories/_categories_tree.html.erb:1
+    app/views/categories/index.html.erb:13
+    app/controllers/categories_controller.rb:7:in `index'
+
+Rendered rescues/_trace (136.4ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:16:21) [GET]
+  [4;35;1mCategory Load (1.2ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (4.8ms)
+Rendered categories/_category_row (9.8ms)
+Rendered categories/_category_row (20.3ms)
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (3.2ms)
+Rendered categories/_category_row (7.6ms)
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (2.7ms)
+Rendered categories/_categories_tree (35.0ms)
+Completed in 46ms (View: 37, DB: 3) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:16:51) [GET]
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.9ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (3.6ms)
+Rendered categories/_category_row (9.0ms)
+Rendered categories/_category_row (14.5ms)
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (2.5ms)
+Rendered categories/_category_row (5.3ms)
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (2.6ms)
+Rendered categories/_categories_tree (23.1ms)
+Completed in 31ms (View: 23, DB: 3) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:18:58) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (4.3ms)
+Rendered categories/_category_row (8.4ms)
+Rendered categories/_category_row (13.2ms)
+Rendered categories/_categories_tree (14.6ms)
+Completed in 23ms (View: 16, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:18:59) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (3.7ms)
+Rendered categories/_category_row (8.0ms)
+Rendered categories/_category_row (13.1ms)
+Rendered categories/_categories_tree (14.7ms)
+Completed in 24ms (View: 16, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:18:59) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (4.0ms)
+Rendered categories/_category_row (7.9ms)
+Rendered categories/_category_row (12.3ms)
+Rendered categories/_categories_tree (13.5ms)
+Completed in 23ms (View: 16, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:19:38) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (4.3ms)
+Rendered categories/_category_row (9.0ms)
+Rendered categories/_category_row (14.7ms)
+Rendered categories/_categories_tree (15.9ms)
+Completed in 30ms (View: 23, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#restructure (for 127.0.0.1 at 2009-11-21 15:19:43) [POST]
+  Parameters: {"authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "category_id"=>"3", "subcategory_id"=>"category_2"}
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 3) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 2) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 3) [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 2) [0m
+
+ActiveRecord::ActiveRecordError (Impossible move, target node cannot be inside moved tree.):
+  app/controllers/categories_controller.rb:5:in `restructure'
+
+Rendered rescues/_trace (35.8ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:19:50) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (3.8ms)
+Rendered categories/_category_row (9.4ms)
+Rendered categories/_category_row (13.8ms)
+Rendered categories/_categories_tree (15.3ms)
+Completed in 93ms (View: 86, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 15:19:59) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Completed in 20ms (View: 13, DB: 1) | 200 OK [http://localhost/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 15:20:08) [POST]
+  Parameters: {"category"=>{"name"=>"bau bau", "lft"=>"", "parent_id"=>"1", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT "categories".id FROM "categories" WHERE ("categories"."name" = 'bau bau') LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;36;1mCategory Create (0.4ms)[0m   [0;1mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('bau bau', '2009-11-21 14:20:08', '2009-11-21 14:20:08', 7, 1, 8)[0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 1) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 4) [0m
+  [4;35;1mCategory Update (0.1ms)[0m   [0mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 6 AND 6 THEN "lft" + 8 - 6 WHEN "lft" BETWEEN 7 AND 8 THEN "lft" + 6 - 7 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 6 AND 6 THEN "rgt" + 8 - 6 WHEN "rgt" BETWEEN 7 AND 8 THEN "rgt" + 6 - 7 ELSE "rgt" END, "parent_id" = CASE WHEN id = 4 THEN 1 ELSE "parent_id" END [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 1) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 4) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 4) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+
+NoMethodError (undefined method `depth' for #<Category:0x103489460>):
+  app/models/category.rb:10:in `update_depth'
+  app/controllers/categories_controller.rb:56:in `create'
+  app/controllers/categories_controller.rb:55:in `create'
+
+Rendered rescues/_trace (117.7ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:20:11) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (4.7ms)
+Rendered categories/_category_row (9.8ms)
+Rendered categories/_category_row (14.1ms)
+Rendered categories/_categories_tree (15.3ms)
+Completed in 29ms (View: 19, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:20:13) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (4.2ms)
+Rendered categories/_category_row (8.0ms)
+Rendered categories/_category_row (12.4ms)
+Rendered categories/_categories_tree (13.8ms)
+Completed in 24ms (View: 17, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:20:14) [GET]
+Rendering template within layouts/categories
+Rendering categories/index
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE ("categories"."parent_id" IS NULL) [0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 1) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 2) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories".parent_id = 3) ORDER BY "lft"[0m
+Rendered categories/_category_row (5.4ms)
+Rendered categories/_category_row (75.9ms)
+Rendered categories/_category_row (80.6ms)
+Rendered categories/_categories_tree (82.0ms)
+Completed in 93ms (View: 85, DB: 2) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:20:41) [GET]
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 27ms (View: 20, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#edit (for 127.0.0.1 at 2009-11-21 15:20:45) [GET]
+  Parameters: {"id"=>"2"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 2) [0m
+Rendering template within layouts/categories
+Rendering categories/edit
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+Completed in 21ms (View: 14, DB: 1) | 200 OK [http://localhost/categories/2/edit]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:20:48) [GET]
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 21ms (View: 15, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#edit (for 127.0.0.1 at 2009-11-21 15:20:51) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 3) [0m
+Rendering template within layouts/categories
+Rendering categories/edit
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 2) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+Completed in 89ms (View: 12, DB: 1) | 200 OK [http://localhost/categories/3/edit]
+
+
+Processing CategoriesController#update (for 127.0.0.1 at 2009-11-21 15:20:54) [PUT]
+  Parameters: {"category"=>{"name"=>"gatto", "lft"=>"3", "parent_id"=>"1", "rgt"=>"4"}, "commit"=>"Update", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 3) [0m
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "categories".id FROM "categories" WHERE ("categories"."name" = 'gatto' AND "categories".id <> 3) LIMIT 1[0m
+  [4;35;1mCategory Update (0.3ms)[0m   [0mUPDATE "categories" SET "updated_at" = '2009-11-21 14:20:54', "parent_id" = 1 WHERE "id" = 3[0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 1) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 3) [0m
+  [4;36;1mCategory Update (0.2ms)[0m   [0;1mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 3 AND 4 THEN "lft" + 5 - 4 WHEN "lft" BETWEEN 5 AND 5 THEN "lft" + 3 - 5 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 3 AND 4 THEN "rgt" + 5 - 4 WHEN "rgt" BETWEEN 5 AND 5 THEN "rgt" + 3 - 5 ELSE "rgt" END, "parent_id" = CASE WHEN id = 3 THEN 1 ELSE "parent_id" END [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 1) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 3) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 3) AND ("categories"."lft" <= 4 AND "categories"."rgt" >= 5)) [0m
+
+NoMethodError (undefined method `depth' for #<Category:0x103611120>):
+  app/models/category.rb:10:in `update_depth'
+  app/controllers/categories_controller.rb:63:in `update'
+  app/controllers/categories_controller.rb:62:in `update'
+
+Rendered rescues/_trace (44.5ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:30:18) [GET]
+  [4;36;1mCategory Load (0.9ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 92ms (View: 85, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#destroy (for 127.0.0.1 at 2009-11-21 15:30:22) [DELETE]
+  Parameters: {"authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"1"}
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 1) [0m
+  [4;36;1mCategory Delete all (0.4ms)[0m   [0;1mDELETE FROM "categories" WHERE ("lft" > 1 AND "rgt" < 6) [0m
+  [4;35;1mCategory Update (0.5ms)[0m   [0mUPDATE "categories" SET "lft" = ("lft" - 6) WHERE ("lft" > 6) [0m
+  [4;36;1mCategory Update (0.1ms)[0m   [0;1mUPDATE "categories" SET "rgt" = ("rgt" - 6) WHERE ("rgt" > 6) [0m
+  [4;35;1mCategory Destroy (0.1ms)[0m   [0mDELETE FROM "categories" WHERE "id" = 1[0m
+Redirected to http://localhost:3000/categories
+Completed in 29ms (DB: 1) | 302 Found [http://localhost/categories/1]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:30:22) [GET]
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 13ms (View: 3, DB: 0) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:30:25) [GET]
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 10ms (View: 3, DB: 0) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 15:30:26) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+Completed in 15ms (View: 8, DB: 0) | 200 OK [http://localhost/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 15:30:40) [POST]
+  Parameters: {"category"=>{"name"=>"root", "lft"=>"", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT "categories".id FROM "categories" WHERE ("categories"."name" = 'root') LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.3ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('root', '2009-11-21 14:30:40', '2009-11-21 14:30:40', 1, NULL, 2)[0m
+
+NoMethodError (undefined method `depth' for #<Category:0x1032533a8>):
+  app/models/category.rb:10:in `update_depth'
+  app/controllers/categories_controller.rb:46:in `create'
+  app/controllers/categories_controller.rb:45:in `create'
+
+Rendered rescues/_trace (115.1ms)
+Rendered rescues/_request_and_response (0.4ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 15:30:58) [POST]
+  Parameters: {"category"=>{"name"=>"root", "lft"=>"", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.4ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('root', '2009-11-21 14:30:58', '2009-11-21 14:30:58', 1, NULL, 2)[0m
+Redirected to http://localhost:3000/categories/4
+Completed in 19ms (DB: 1) | 302 Found [http://localhost/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 15:30:58) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 4) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://localhost/categories/4]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:30:59) [GET]
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 15ms (View: 9, DB: 0) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 15:31:01) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 2) ORDER BY "lft"[0m
+Completed in 85ms (View: 78, DB: 1) | 200 OK [http://localhost/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 15:31:08) [POST]
+  Parameters: {"category"=>{"name"=>"child1", "lft"=>"", "parent_id"=>"4", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.4ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.5ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('child1', '2009-11-21 14:31:08', '2009-11-21 14:31:08', 3, 4, 4)[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 4) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 5) [0m
+  [4;36;1mCategory Update (0.1ms)[0m   [0;1mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 2 AND 2 THEN "lft" + 4 - 2 WHEN "lft" BETWEEN 3 AND 4 THEN "lft" + 2 - 3 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 2 AND 2 THEN "rgt" + 4 - 2 WHEN "rgt" BETWEEN 3 AND 4 THEN "rgt" + 2 - 3 ELSE "rgt" END, "parent_id" = CASE WHEN id = 5 THEN 4 ELSE "parent_id" END [0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 4) [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 5) [0m
+Redirected to http://localhost:3000/categories/5
+Completed in 23ms (DB: 2) | 302 Found [http://localhost/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 15:31:08) [GET]
+  Parameters: {"id"=>"5"}
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 5) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 12ms (View: 5, DB: 0) | 200 OK [http://localhost/categories/5]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:31:10) [GET]
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 19ms (View: 12, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 15:31:11) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 4) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 3)) [0m
+Completed in 17ms (View: 10, DB: 1) | 200 OK [http://localhost/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 15:31:17) [POST]
+  Parameters: {"category"=>{"name"=>"child2", "lft"=>"", "parent_id"=>"4", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.3ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('child2', '2009-11-21 14:31:17', '2009-11-21 14:31:17', 5, 4, 6)[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 4) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 6) [0m
+  [4;36;1mCategory Update (0.1ms)[0m   [0;1mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 4 AND 4 THEN "lft" + 6 - 4 WHEN "lft" BETWEEN 5 AND 6 THEN "lft" + 4 - 5 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 4 AND 4 THEN "rgt" + 6 - 4 WHEN "rgt" BETWEEN 5 AND 6 THEN "rgt" + 4 - 5 ELSE "rgt" END, "parent_id" = CASE WHEN id = 6 THEN 4 ELSE "parent_id" END [0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 4) [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 6) [0m
+Redirected to http://localhost:3000/categories/6
+Completed in 35ms (DB: 2) | 302 Found [http://localhost/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 15:31:17) [GET]
+  Parameters: {"id"=>"6"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 6) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 11ms (View: 5, DB: 0) | 200 OK [http://localhost/categories/6]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:31:18) [GET]
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 22ms (View: 15, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 15:31:19) [GET]
+Rendering template within layouts/categories
+Rendering categories/new
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 6) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 3)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 4 AND "categories"."rgt" >= 5)) [0m
+Completed in 20ms (View: 12, DB: 1) | 200 OK [http://localhost/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 15:31:30) [POST]
+  Parameters: {"category"=>{"name"=>"sub-child1", "lft"=>"", "parent_id"=>"5", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;36;1mCategory Create (0.3ms)[0m   [0;1mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('sub-child1', '2009-11-21 14:31:30', '2009-11-21 14:31:30', 7, 5, 8)[0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 5) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Update (0.1ms)[0m   [0mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 3 AND 6 THEN "lft" + 8 - 6 WHEN "lft" BETWEEN 7 AND 8 THEN "lft" + 3 - 7 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 3 AND 6 THEN "rgt" + 8 - 6 WHEN "rgt" BETWEEN 7 AND 8 THEN "rgt" + 3 - 7 ELSE "rgt" END, "parent_id" = CASE WHEN id = 7 THEN 5 ELSE "parent_id" END [0m
+  [4;36;1mCategory Load (0.1ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 5) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 7) [0m
+Redirected to http://localhost:3000/categories/7
+Completed in 21ms (DB: 2) | 302 Found [http://localhost/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 15:31:30) [GET]
+  Parameters: {"id"=>"7"}
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+Rendering template within layouts/categories
+Rendering categories/show
+Completed in 11ms (View: 4, DB: 0) | 200 OK [http://localhost/categories/7]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 15:31:32) [GET]
+  [4;35;1mCategory Load (0.8ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 99ms (View: 89, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:59:09) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 11ms (View: 6, DB: 0) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 15:59:11) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" ORDER BY name[0m
+Rendered products/_form (15.4ms)
+Completed in 25ms (View: 20, DB: 1) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 15:59:15) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>""}}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Redirected to http://localhost:3000/products/3
+Completed in 11ms (DB: 0) | 302 Found [http://localhost/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 15:59:15) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 7ms (View: 2, DB: 0) | 200 OK [http://localhost/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 15:59:17) [GET]
+  [4;35;1mProduct Load (0.4ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 11ms (View: 7, DB: 0) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 15:59:19) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" ORDER BY name[0m
+Rendered products/_form (80.5ms)
+Completed in 88ms (View: 82, DB: 1) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:00:03) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 12ms (View: 7, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:00:04) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (19.8ms)
+Completed in 30ms (View: 23, DB: 2) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:00:10) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>"5"}}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+  [4;36;1mProduct Update (0.4ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:00:10', "category_id" = 5 WHERE "id" = 3[0m
+Redirected to http://localhost:3000/products/3
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:00:10) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:00:11) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 14ms (View: 6, DB: 0) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:00:12) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+
+ActionView::TemplateError (undefined method `new_record?' for 5:Fixnum) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.select :category_id, nested_set_options(Category, @product.category_id) {|i| "#{'-' * i.level} #{i.name}" } %>
+5:   </p>
+6:   <p>
+7:     <%= f.label :name %><br />
+
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/edit.html.erb:3
+
+Rendered rescues/_trace (50.0ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 16:00:20) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (90.7ms)
+Completed in 98ms (View: 91, DB: 2) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2009-11-21 16:00:25) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "product"=>{"name"=>"", "category_id"=>"7"}}
+  [4;35;1mProduct Create (0.6ms)[0m   [0mINSERT INTO "products" ("name", "created_at", "updated_at", "category_id") VALUES('', '2009-11-21 15:00:25', '2009-11-21 15:00:25', 7)[0m
+Redirected to http://localhost:3000/products/4
+Completed in 16ms (DB: 1) | 302 Found [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:00:25) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/products/4]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:00:27) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 9, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:00:48) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 20ms (View: 14, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:00:50) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.8ms)[0m   [0;1mSELECT * FROM "categories" ORDER BY name[0m
+Rendered products/_form (80.6ms)
+Completed in 90ms (View: 85, DB: 1) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:00:53) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>"6"}}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+  [4;36;1mProduct Update (0.4ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:00:53', "category_id" = 6 WHERE "id" = 3[0m
+Redirected to http://localhost:3000/products/3
+Completed in 15ms (DB: 1) | 302 Found [http://localhost/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:00:53) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:00:54) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 10, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:00:56) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" ORDER BY name[0m
+Rendered products/_form (13.0ms)
+Completed in 20ms (View: 14, DB: 1) | 200 OK [http://localhost/products/3/edit]
+  [4;36;1mSQL (0.9ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" [0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" LIMIT 1[0m
+  [4;35;1mCategory Load (1.9ms)[0m   [0mSELECT * FROM "categories" LIMIT 1[0m
+  [4;36;1mCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "categories" ORDER BY categories.id DESC LIMIT 1[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:03:07) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 38ms (View: 33, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:03:08) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" ORDER BY name[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (26.3ms)
+Completed in 41ms (View: 35, DB: 2) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:03:17) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>"4"}}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+  [4;35;1mProduct Update (0.4ms)[0m   [0mUPDATE "products" SET "updated_at" = '2009-11-21 15:03:17', "category_id" = 4 WHERE "id" = 3[0m
+Redirected to http://localhost:3000/products/3
+Completed in 81ms (DB: 1) | 302 Found [http://localhost/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:03:17) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 11ms (View: 6, DB: 0) | 200 OK [http://localhost/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:03:18) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 10, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:03:19) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" ORDER BY name[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+Rendered products/_form (17.5ms)
+Completed in 24ms (View: 18, DB: 1) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:03:22) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>"5"}}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+  [4;36;1mProduct Update (0.3ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:03:22', "category_id" = 5 WHERE "id" = 3[0m
+Redirected to http://localhost:3000/products/3
+Completed in 15ms (DB: 1) | 302 Found [http://localhost/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:03:22) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/products/3]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:03:24) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 82ms (View: 78, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:03:49) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 16ms (View: 10, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:03:51) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.0ms)[0m   [0mSQLite3::SQLException: no such column: level: SELECT * FROM "categories" ORDER BY level[0m
+
+ActionView::TemplateError (SQLite3::SQLException: no such column: level: SELECT * FROM "categories"  ORDER BY level) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.collection_select :category_id, Category.all(:order => :level), :id, :path_name, :include_blank => true %>
+5:   </p>
+6:   <p>
+7:     <%= f.label :name %><br />
+
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/edit.html.erb:3
+
+Rendered rescues/_trace (123.9ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:05:11) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+
+ActionView::TemplateError (undefined method `category' for #<Product:0x103668538>) on line #4 of app/views/products/_form.html.erb:
+1: <% form_for(@product) do |f| %>
+2:   <%= f.error_messages %>
+3:   <p>
+4:     <%= f.select :category_id, nested_set_options(Category, @product.category) {|i| "#{'-' * i.level} #{i.name}" } %>
+5:   </p>
+6:   <p>
+7:     <%= f.label :name %><br />
+
+    app/views/products/_form.html.erb:4
+    app/views/products/_form.html.erb:1
+    app/views/products/edit.html.erb:3
+
+Rendered rescues/_trace (47.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:05:56) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 5) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (19.0ms)
+Completed in 27ms (View: 20, DB: 2) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:06:02) [GET]
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 17ms (View: 10, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 16:06:10) [GET]
+  [4;35;1mCategory Load (0.7ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 42ms (View: 29, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 16:06:14) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (19.9ms)
+Completed in 96ms (View: 89, DB: 2) | 200 OK [http://localhost/products/new]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 16:06:23) [GET]
+  [4;35;1mCategory Load (0.7ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 30ms (View: 19, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:06:29) [GET]
+  [4;36;1mProduct Load (0.5ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 15ms (View: 10, DB: 0) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#new (for 127.0.0.1 at 2009-11-21 16:06:31) [GET]
+Rendering template within layouts/products
+Rendering products/new
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (83.0ms)
+Completed in 90ms (View: 83, DB: 2) | 200 OK [http://localhost/products/new]
+
+
+Processing ProductsController#create (for 127.0.0.1 at 2009-11-21 16:06:38) [POST]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "product"=>{"name"=>"ad", "category_id"=>"7"}}
+  [4;36;1mProduct Create (0.4ms)[0m   [0;1mINSERT INTO "products" ("name", "created_at", "updated_at", "category_id") VALUES('ad', '2009-11-21 15:06:38', '2009-11-21 15:06:38', 7)[0m
+Redirected to http://localhost:3000/products/5
+Completed in 15ms (DB: 0) | 302 Found [http://localhost/products]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:06:39) [GET]
+  Parameters: {"id"=>"5"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/products/5]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:06:40) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 18ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:06:45) [GET]
+  Parameters: {"id"=>"5"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (18.0ms)
+Completed in 25ms (View: 18, DB: 2) | 200 OK [http://localhost/products/5/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:06:49) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"5", "product"=>{"name"=>"ad", "category_id"=>"5"}}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+  [4;36;1mProduct Update (0.4ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:06:49', "category_id" = 5 WHERE "id" = 5[0m
+Redirected to http://localhost:3000/products/5
+Completed in 85ms (DB: 1) | 302 Found [http://localhost/products/5]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:06:49) [GET]
+  Parameters: {"id"=>"5"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/products/5]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:06:50) [GET]
+  Parameters: {"id"=>"5"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 5) [0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (17.4ms)
+Completed in 25ms (View: 18, DB: 1) | 200 OK [http://localhost/products/5/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:06:53) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"5", "product"=>{"name"=>"ad", "category_id"=>"6"}}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+  [4;36;1mProduct Update (0.4ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:06:53', "category_id" = 6 WHERE "id" = 5[0m
+Redirected to http://localhost:3000/products/5
+Completed in 18ms (DB: 1) | 302 Found [http://localhost/products/5]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:06:53) [GET]
+  Parameters: {"id"=>"5"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/products/5]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:09:48) [GET]
+  Parameters: {"id"=>"5"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (85.5ms)
+Completed in 96ms (View: 89, DB: 2) | 200 OK [http://localhost/products/5/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:09:52) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"5", "product"=>{"name"=>"ad", "category_id"=>"7"}}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+  [4;35;1mProduct Update (0.3ms)[0m   [0mUPDATE "products" SET "updated_at" = '2009-11-21 15:09:52', "category_id" = 7 WHERE "id" = 5[0m
+Redirected to http://localhost:3000/products/5
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/products/5]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:09:52) [GET]
+  Parameters: {"id"=>"5"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 5) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 3, DB: 0) | 200 OK [http://localhost/products/5]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:09:53) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 19ms (View: 14, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:09:57) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (92.4ms)
+Completed in 100ms (View: 93, DB: 2) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:09:59) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"3", "product"=>{"name"=>"sadasfas", "category_id"=>"4"}}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+  [4;35;1mProduct Update (0.5ms)[0m   [0mUPDATE "products" SET "updated_at" = '2009-11-21 15:09:59', "category_id" = 4 WHERE "id" = 3[0m
+Redirected to http://localhost:3000/products/3
+Completed in 16ms (DB: 1) | 302 Found [http://localhost/products/3]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:09:59) [GET]
+  Parameters: {"id"=>"3"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/products/3]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:26:17) [GET]
+  Parameters: {"id"=>"3"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 3) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (19.3ms)
+Completed in 26ms (View: 19, DB: 2) | 200 OK [http://localhost/products/3/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:26:22) [GET]
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 17ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:26:24) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (87.6ms)
+Completed in 94ms (View: 88, DB: 2) | 200 OK [http://localhost/products/4/edit]
+  [4;36;1mProduct Load (0.4ms)[0m   [0;1mSELECT * FROM "products" ORDER BY products.id DESC LIMIT 1[0m
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" ORDER BY products.id DESC LIMIT 1[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mProduct Load (0.5ms)[0m   [0mSELECT * FROM "products" ORDER BY products.id DESC LIMIT 1[0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) ORDER BY "lft"[0m
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" ORDER BY products.id DESC LIMIT 1[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;36;1mCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) ORDER BY "lft"[0m
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" ORDER BY products.id DESC LIMIT 1[0m
+  [4;36;1mCategory Load (0.4ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) ORDER BY "lft"[0m
+  [4;36;1mProduct Load (0.7ms)[0m   [0;1mSELECT * FROM "products" ORDER BY products.id DESC LIMIT 1[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;36;1mCategory Load (0.6ms)[0m   [0;1mSELECT * FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) ORDER BY "lft"[0m
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:30:32) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"4", "product"=>{"name"=>"", "category_id"=>"7"}}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Redirected to http://localhost:3000/products/4
+Completed in 13ms (DB: 0) | 302 Found [http://localhost/products/4]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:30:32) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 85ms (View: 79, DB: 0) | 200 OK [http://localhost/products/4]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:30:34) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 23ms (View: 17, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:31:03) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (26.0ms)
+Completed in 108ms (View: 100, DB: 2) | 200 OK [http://localhost/products/4/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:31:46) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"4", "product"=>{"name"=>"asd", "category_id"=>"6"}}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+  [4;36;1mProduct Update (0.5ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:31:46', "name" = 'asd', "category_id" = 6 WHERE "id" = 4[0m
+Redirected to http://localhost:3000/products/4
+Completed in 15ms (DB: 1) | 302 Found [http://localhost/products/4]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:31:46) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 9ms (View: 3, DB: 0) | 200 OK [http://localhost/products/4]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:31:47) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 18ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:31:50) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/edit
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 6) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Rendered products/_form (84.7ms)
+Completed in 92ms (View: 85, DB: 2) | 200 OK [http://localhost/products/4/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:31:54) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"4", "product"=>{"name"=>"asd", "category_id"=>"7"}}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+  [4;36;1mProduct Update (0.3ms)[0m   [0;1mUPDATE "products" SET "updated_at" = '2009-11-21 15:31:54', "category_id" = 7 WHERE "id" = 4[0m
+Redirected to http://localhost:3000/products/4
+Completed in 12ms (DB: 1) | 302 Found [http://localhost/products/4]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:31:54) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/products
+Rendering products/show
+Completed in 9ms (View: 2, DB: 0) | 200 OK [http://localhost/products/4]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:31:56) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/products
+Rendering products/index
+Completed in 19ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 16:32:01) [GET]
+  [4;35;1mCategory Load (0.8ms)[0m   [0mSELECT * FROM "categories" [0m
+Rendering template within layouts/categories
+Rendering categories/index
+Completed in 38ms (View: 29, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 16:33:55) [GET]
+  [4;36;1mCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/application
+Rendering categories/index
+Completed in 105ms (View: 99, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:33:57) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/application
+Rendering products/index
+Completed in 17ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing CategoriesController#index (for 127.0.0.1 at 2009-11-21 16:33:58) [GET]
+  [4;36;1mCategory Load (0.7ms)[0m   [0;1mSELECT * FROM "categories" [0m
+Rendering template within layouts/application
+Rendering categories/index
+Completed in 25ms (View: 17, DB: 1) | 200 OK [http://localhost/categories]
+
+
+Processing CategoriesController#new (for 127.0.0.1 at 2009-11-21 16:34:01) [GET]
+Rendering template within layouts/application
+Rendering categories/new
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 8) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 4)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 6 AND "categories"."rgt" >= 7)) [0m
+Completed in 23ms (View: 15, DB: 1) | 200 OK [http://localhost/categories/new]
+
+
+Processing CategoriesController#create (for 127.0.0.1 at 2009-11-21 16:34:13) [POST]
+  Parameters: {"category"=>{"name"=>"sub-sub-child1", "lft"=>"", "parent_id"=>"7", "rgt"=>""}, "commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc="}
+WARNING: Can't mass-assign these protected attributes: lft, rgt
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT max("categories".rgt) AS max_rgt FROM "categories" [0m
+  [4;35;1mCategory Create (0.3ms)[0m   [0mINSERT INTO "categories" ("name", "created_at", "updated_at", "lft", "parent_id", "rgt") VALUES('sub-sub-child1', '2009-11-21 15:34:13', '2009-11-21 15:34:13', 9, 7, 10)[0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 8) [0m
+  [4;36;1mCategory Update (0.1ms)[0m   [0;1mUPDATE "categories" SET "lft" = CASE WHEN "lft" BETWEEN 4 AND 8 THEN "lft" + 10 - 8 WHEN "lft" BETWEEN 9 AND 10 THEN "lft" + 4 - 9 ELSE "lft" END, "rgt" = CASE WHEN "rgt" BETWEEN 4 AND 8 THEN "rgt" + 10 - 8 WHEN "rgt" BETWEEN 9 AND 10 THEN "rgt" + 4 - 9 ELSE "rgt" END, "parent_id" = CASE WHEN id = 8 THEN 7 ELSE "parent_id" END [0m
+  [4;35;1mCategory Load (0.1ms)[0m   [0mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;36;1mCategory Load (0.2ms)[0m   [0;1mSELECT "lft", "rgt", "parent_id" FROM "categories" WHERE ("categories"."id" = 8) [0m
+Redirected to http://localhost:3000/categories/8
+Completed in 18ms (DB: 1) | 302 Found [http://localhost/categories]
+
+
+Processing CategoriesController#show (for 127.0.0.1 at 2009-11-21 16:34:13) [GET]
+  Parameters: {"id"=>"8"}
+  [4;35;1mCategory Load (0.2ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 8) [0m
+Rendering template within layouts/application
+Rendering categories/show
+Completed in 15ms (View: 7, DB: 0) | 200 OK [http://localhost/categories/8]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:34:20) [GET]
+  [4;36;1mProduct Load (0.6ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/application
+Rendering products/index
+Completed in 18ms (View: 13, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:34:22) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.3ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering products/edit
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 6)) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 10) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 7)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 6)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 8) AND ("categories"."lft" <= 4 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 8 AND "categories"."rgt" >= 9)) [0m
+Rendered products/_form (21.7ms)
+Completed in 30ms (View: 21, DB: 3) | 200 OK [http://localhost/products/4/edit]
+
+
+Processing ProductsController#update (for 127.0.0.1 at 2009-11-21 16:34:25) [PUT]
+  Parameters: {"commit"=>"Create", "authenticity_token"=>"2e45ZXNJg3n8lKcoZN+Clq6YxCEVrevrrh2ahE5KwZc=", "id"=>"4", "product"=>{"name"=>"asd", "category_id"=>"8"}}
+  [4;36;1mProduct Load (0.3ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+  [4;35;1mProduct Update (0.6ms)[0m   [0mUPDATE "products" SET "updated_at" = '2009-11-21 15:34:25', "category_id" = 8 WHERE "id" = 4[0m
+Redirected to http://localhost:3000/products/4
+Completed in 14ms (DB: 1) | 302 Found [http://localhost/products/4]
+
+
+Processing ProductsController#show (for 127.0.0.1 at 2009-11-21 16:34:25) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering products/show
+Completed in 8ms (View: 2, DB: 0) | 200 OK [http://localhost/products/4]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:34:27) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/application
+Rendering products/index
+Completed in 87ms (View: 14, DB: 1) | 200 OK [http://localhost/products]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:34:30) [GET]
+  Parameters: {"id"=>"4"}
+  [4;36;1mProduct Load (0.2ms)[0m   [0;1mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering products/edit
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."id" = 8) [0m
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE (("categories".id != 8) AND ("categories"."lft" <= 4 AND "categories"."rgt" >= 5)) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.5ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 10) ORDER BY "lft"[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 7)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 6)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 8) AND ("categories"."lft" <= 4 AND "categories"."rgt" >= 5)) [0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 8 AND "categories"."rgt" >= 9)) [0m
+Rendered products/_form (22.1ms)
+Completed in 29ms (View: 22, DB: 3) | 200 OK [http://localhost/products/4/edit]
+
+
+Processing ProductsController#edit (for 127.0.0.1 at 2009-11-21 16:35:06) [GET]
+  Parameters: {"id"=>"4"}
+  [4;35;1mProduct Load (0.2ms)[0m   [0mSELECT * FROM "products" WHERE ("products"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering products/edit
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 8) [0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" <= 4 AND "categories"."rgt" >= 5) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."parent_id" IS NULL) ORDER BY "lft"[0m
+  [4;35;1mCategory Load (0.6ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" >= 1 AND "categories"."rgt" <= 10) ORDER BY "lft"[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 5) AND ("categories"."lft" <= 2 AND "categories"."rgt" >= 7)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 7) AND ("categories"."lft" <= 3 AND "categories"."rgt" >= 6)) [0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 8) AND ("categories"."lft" <= 4 AND "categories"."rgt" >= 5)) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 8 AND "categories"."rgt" >= 9)) [0m
+Rendered products/_form (21.1ms)
+Completed in 31ms (View: 23, DB: 3) | 200 OK [http://localhost/products/4/edit]
