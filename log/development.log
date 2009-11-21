@@ -1934,3 +1934,23 @@ Rendering products/edit
   [4;35;1mSQL (0.2ms)[0m   [0mSELECT count(*) AS count_all FROM "categories" WHERE (("categories".id != 6) AND ("categories"."lft" <= 8 AND "categories"."rgt" >= 9)) [0m
 Rendered products/_form (21.1ms)
 Completed in 31ms (View: 23, DB: 3) | 200 OK [http://localhost/products/4/edit]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:41:39) [GET]
+  [4;36;1mProduct Load (0.8ms)[0m   [0;1mSELECT * FROM "products" [0m
+Rendering template within layouts/application
+Rendering products/index
+Completed in 45ms (View: 35, DB: 1) | 200 OK [http://localhost/]
+
+
+Processing ProductsController#index (for 127.0.0.1 at 2009-11-21 16:42:36) [GET]
+  [4;35;1mProduct Load (0.6ms)[0m   [0mSELECT * FROM "products" [0m
+Rendering template within layouts/application
+Rendering products/index
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 4) [0m
+  [4;35;1mCategory Load (0.3ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" <= 1 AND "categories"."rgt" >= 10) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 8) [0m
+  [4;35;1mCategory Load (0.5ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" <= 4 AND "categories"."rgt" >= 5) ORDER BY "lft"[0m
+  [4;36;1mCategory Load (0.3ms)[0m   [0;1mSELECT * FROM "categories" WHERE ("categories"."id" = 7) [0m
+  [4;35;1mCategory Load (0.4ms)[0m   [0mSELECT * FROM "categories" WHERE ("categories"."lft" <= 3 AND "categories"."rgt" >= 6) ORDER BY "lft"[0m
+Completed in 43ms (View: 35, DB: 3) | 200 OK [http://localhost/]
